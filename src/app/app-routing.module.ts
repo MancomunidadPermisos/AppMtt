@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'peticiones',
     loadChildren: () => import('./peticiones/peticiones.module').then( m => m.PeticionesPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 
 ];
 
