@@ -1,0 +1,46 @@
+.containerLogo {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+  }
+  
+  .input-item {
+    padding-left: 20px;
+    width: 100%;
+    border-radius: 12px;
+    border: 2px solid #e2e2e2;
+    height: 70px;
+  
+    ion-input {
+      margin-top: -5px;
+    }
+  }
+  
+  .ion-item {
+    margin-top: 20px;
+  }
+  
+  
+  .login-button {
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 50px;
+    --background: #101f3e;
+    --border-radius: 12px;
+    --box-shadow: none;
+  }
+
+  .input-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .input-item ion-input {
+    flex: 1; /* Para que el input ocupe todo el espacio disponible */
+  }
+
+  .colorOjo{
+    --ion-color-primary: #101f3e;
+  }
