@@ -1,13 +1,153 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>peticiones</ion-title>
+    <ion-buttons slot="start">
+      <ion-icon
+        color="tertiary"
+        name="arrow-back-outline"
+        size="large"
+        class="colorToolbar"
+        (click)="backHome()"
+      ></ion-icon>
+    </ion-buttons>
+    <ion-title>Gestión Peticiones</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- Segmentacion estados-->
+  <ion-segment
+    value="Pendiente"
+    (ionChange)="segmentChanged($event)"
+    mode="ios"
+  >
+    <ion-segment-button value="Pendiente">
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Aprobada">
+      <ion-label>Aprobadas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Rechazada">
+      <ion-label>Rechazadas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">peticiones</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Peticiones -->
+  <ion-card *ngFor="let peticion of peticionesFiltradas">
+    <ion-card-header style="padding-bottom: 0px">
+      <ion-card-subtitle style="font-size: medium; margin: 0px">
+        <strong style="font-weight: bolder">Estado: </strong>
+        <span [ngStyle]="{'color': getColor(peticion.estado_pet)}"
+          >{{ peticion.estado_pet }}</span
+        >
+        <hr style="margin: 8px 0; border: 0; border-top: 1px solid #e4e7ec" />
+      </ion-card-subtitle>
+      <ion-card-title style="font-size: larger">
+        <p
+          style="
+            font-size: small;
+            color: #898989;
+            margin: 0;
+            padding: 0px;
+            margin-bottom: 8px;
+          "
+        >
+          Tipo de petición:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 8px">
+          {{ getNombreTipoPeticion(peticion.id_tipo_pet_asig) }}
+        </p>
+        <p
+          style="
+            font-size: small;
+            color: #898989;
+            margin: 0;
+            padding: 0px;
+            margin-bottom: 8px;
+          "
+        >
+          Desde:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 8px">
+          {{ peticion.fecha_inicio | date: "dd-MM-yyyy" }} -
+          {{peticion.hora_inicio}}
+        </p>
+        <p
+          style="
+            font-size: small;
+            color: #898989;
+            margin: 0;
+            padding: 0px;
+            margin-bottom: 8px;
+          "
+        >
+          Hasta:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 8px">
+          {{ peticion.fecha_fin | date: "dd-MM-yyyy" }} - {{peticion.hora_fin}}
+        </p>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content style="display: flex; flex-direction: column">
+      <p
+        style="
+          font-size: small;
+          font-weight: bold;
+          color: #898989;
+          margin: 0;
+          padding: 0px;
+          margin-bottom: 8px;
+        "
+      >
+        Descripción:
+      </p>
+      <p style="color: black">{{ peticion.descripcion_pet }}</p>
+      <p
+        style="
+          font-size: small;
+          font-weight: bold;
+          color: #898989;
+          margin: 0;
+          padding: 0px;
+          margin-bottom: 8px;
+        "
+      >
+        Observación:
+      </p>
+      <p style="color: black">{{ peticion.observacion_pet }}</p>
+      <hr style="margin: 8px 0; border: 0; border-top: 1px solid #e4e7ec" />
+      <div style="align-self: flex-end">
+        <!-- Editar -->
+        <ion-icon
+          *ngIf="peticion.estado_pet !== 'Aprobada' && peticion.estado_pet !== 'Rechazada'"
+          style="font-size: 25px; margin-right: 10px"
+          slot="end"
+          color="tertiary"
+          name="create-outline"
+          (click)="addUpdatePeticion(peticion)"
+        ></ion-icon>
+        <!-- Eliminar -->
+        <ion-icon
+          *ngIf="peticion.estado_pet !== 'Aprobada' && peticion.estado_pet !== 'Rechazada'"
+          style="font-size: 25px"
+          color="danger"
+          name="trash-outline"
+          (click)="confirmDeletePeticion(peticion)"
+        ></ion-icon>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <br />
+  <br />
+  <br />
+
+  <!-- Nueva petcion -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addUpdatePeticion()" color="mancomunidad">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

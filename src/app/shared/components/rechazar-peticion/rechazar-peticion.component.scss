@@ -1,0 +1,13 @@
+.observacion {
+  --border-color: #000;
+  --border-radius: 10px;
+  --border-style: solid;
+  --border-width: 1px;
+  margin: 20px 10px 0px 0px;
+  border-radius: 16px;
+
+  ion-label {
+    position: relative;
+    bottom: 2px;
+  }
+}
