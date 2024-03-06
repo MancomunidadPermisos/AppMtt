@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'appMtt',
   webDir: 'www',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'http'
   }
 };
 

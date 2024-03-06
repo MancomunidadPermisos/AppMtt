@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { AprobacionesPageRoutingModule } from './aprobaciones-routing.module';
 
 import { AprobacionesPage } from './aprobaciones.page';
+import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AprobacionesPageRoutingModule
+    AprobacionesPageRoutingModule,
+    SharedModule,
+    HttpClientModule,
   ],
-  declarations: [AprobacionesPage]
+  declarations: [AprobacionesPage],
 })
 export class AprobacionesPageModule {}

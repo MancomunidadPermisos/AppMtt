@@ -1,0 +1,93 @@
+ion-fab-button {
+  background-color: var(--ion-color-mancomunidad);
+  border-radius: 100%;
+}
+
+ion-menu::part(backdrop) {
+  background-color: rgba(0, 187, 255, 0.5);
+}
+
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+
+  box-shadow: 4px 0px 16px rgba(0, 255, 225, 0.18);
+}
+
+.colorToolbar {
+  --ion-color-tertiary: #101f3e;
+}
+
+.unread-indicator {
+  background: var(--ion-color-primary);
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 100%;
+
+  position: absolute;
+
+  inset-inline-start: 12px;
+  top: 12px;
+}
+
+.metadata-end-wrapper {
+  position: absolute;
+
+  top: 10px;
+  inset-inline-end: 10px;
+
+  font-size: 0.8rem;
+
+  display: flex;
+  align-items: center;
+}
+
+ion-label strong {
+  display: block;
+
+  max-width: calc(100% - 60px);
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+ion-label ion-note {
+  font-size: 0.9rem;
+}
+
+.menubutton {
+  --color: #101f3e;
+}
+
+.containerLogo {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.textoBienvenida {
+  display: flex;
+  justify-content: center;
+}
+.fondo {
+  background-image: url("/assets/fondoMovil.png");
+  background-color: #101f3e;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* Establece un color de fondo de respaldo */
+  height: 93vh;
+
+  /* Usa flexbox para centrar el contenido */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+.fondo-vertical {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+}
