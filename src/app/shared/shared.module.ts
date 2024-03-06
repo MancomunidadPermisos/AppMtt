@@ -4,6 +4,8 @@ import { AddUpdatePeticionComponent } from './components/add-update-peticion/add
 import { CustomInputComponent } from './components/custom-input/custom-input.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RechazarPeticionComponent } from './components/rechazar-peticion/rechazar-peticion.component';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,7 @@ import { RechazarPeticionComponent } from './components/rechazar-peticion/rechaz
     HeaderComponent,
     RechazarPeticionComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule],
   exports: [
     AddUpdatePeticionComponent,
     CustomInputComponent,

@@ -1,1 +1,165 @@
-<p>add-update-peticion works!</p>
+<app-header
+  [title]="peticion ? 'Actualizar Petición' : 'Solicitar Petición'"
+  [isModal]="true"
+>
+</app-header>
+<ion-content>
+  <form
+    [formGroup]="form"
+    class="ion-padding ion-text-center"
+    (ngSubmit)="submit()"
+    (keypress.enter)="submit()"
+  >
+    <!-- Fecha de inicio -->
+    <app-custom-input
+      class="formularioAdd"
+      autocomplete="fecha_inicio"
+      min="2024-02-15T00:00:00"
+      icon="calendar-Number-Outline"
+      [min]="getCurrentDate()"
+      [control]="form.controls.fecha_inicio"
+      type="date"
+      label="Fecha de inicio de la petición"
+    >
+    </app-custom-input>
+    <div
+      class="validators"
+      *ngIf="
+        form.controls.fecha_inicio.errors && form.controls.fecha_inicio.touched
+      "
+    >
+      <div *ngIf="form.controls.fecha_inicio.errors?.['required']">
+        Este campo es necesario.
+      </div>
+      <div *ngIf="form.controls.fecha_inicio.errors?.['fechaNoEnRango']">
+        No se pueden ingresar fechas anteriores a la actual.
+      </div>
+    </div>
+    <!-- Fecha de fin -->
+    <app-custom-input
+      class="formularioAdd"
+      autocomplete="fecha_fin"
+      icon="calendar-Number-Outline"
+      [min]="getCurrentDate()"
+      [control]="form.controls.fecha_fin"
+      type="date"
+      label="Fecha de fin de la petición"
+    ></app-custom-input>
+    <div
+      class="validators"
+      *ngIf="form.controls.fecha_fin.errors && form.controls.fecha_fin.touched"
+    >
+      <div *ngIf="form.controls.fecha_fin.errors?.['required']">
+        Este campo es necesario.
+      </div>
+      <div *ngIf="form.controls.fecha_fin.errors?.['fechaNoEnRango']">
+        No se pueden ingresar fechas anteriores a la actual.
+      </div>
+      <div *ngIf="form.controls.fecha_fin.errors?.['fechaInvalida']">
+        La fecha de fin no puede ser menor a la fecha de inicio.
+      </div>
+      <div *ngIf="form.controls.fecha_fin.errors?.['diasExcedidos']">
+        Las fechas seleccionadas exceden el límite de días disponibles para este
+        usuario: dias disponibles {{ dias_disponibles }}.
+      </div>
+    </div>
+    <!-- Hora inicio -->
+    <app-custom-input
+      class="formularioAdd"
+      autocomplete="hora_inicio"
+      icon="time-outline"
+      [control]="form.controls.hora_inicio"
+      type="time"
+      label="Hora de inicio de la petición"
+    ></app-custom-input>
+
+    <div
+      class="validators"
+      *ngIf="
+        form.controls.hora_inicio.errors && form.controls.hora_inicio.touched
+      "
+    >
+      <div *ngIf="form.controls.hora_inicio.errors?.['required']">
+        Este campo es necesario.
+      </div>
+      <div *ngIf="form.controls.hora_inicio.errors?.['horaNoEnRango']">
+        La hora debe estar en el rango de {{ hora_inicio }} a {{ hora_fin }}.
+      </div>
+    </div>
+
+    <!-- Hora de fin -->
+    <app-custom-input
+      class="formularioAdd"
+      autocomplete="hora_fin"
+      icon="time-outline"
+      [control]="form.controls.hora_fin"
+      type="time"
+      label="Hora de fin de la petición"
+    ></app-custom-input>
+
+    <div
+      class="validators"
+      *ngIf="form.controls.hora_fin.errors && form.controls.hora_fin.touched"
+    >
+      <div *ngIf="form.controls.hora_fin.errors?.['required']">
+        Este campo es necesario.
+      </div>
+      <div *ngIf="form.controls.hora_fin.errors?.['horaNoEnRango']">
+        La hora debe estar en el rango de {{ hora_inicio }} a {{ hora_fin }}.
+      </div>
+    </div>
+
+    <!-- Tipo de petición -->
+    <ion-item
+      style="
+        border: 1px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: black;
+        margin: 20px 10px;
+      "
+    >
+      <ion-label>Tipo de petición: </ion-label>
+      <ion-select
+        [formControl]="form.controls.id_tipo_pet_asig"
+        (ionChange)="toggleDescripcion()"
+      >
+        <ion-select-option
+          *ngFor="let opcion of tipoPeticion"
+          [value]="opcion.value"
+          >{{ opcion.label }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <!-- Descripción -->
+    <div *ngIf="showDescripcion">
+      <app-custom-input
+        class="formularioAdd"
+        autocomplete="descripcion_pet"
+        icon="text-outline"
+        [control]="form.controls.descripcion_pet"
+        type="text"
+        label="Descripción de la petición"
+      ></app-custom-input>
+      <div
+        class="validators"
+        *ngIf="
+          form.controls.descripcion_pet.errors &&
+          form.controls.descripcion_pet.touched
+        "
+      >
+        <div *ngIf="form.controls.descripcion_pet.errors?.['required']">
+          Este campo es necesario.
+        </div>
+      </div>
+    </div>
+
+    <ion-button
+      class="ion-margin solicitar"
+      type="submit"
+      [disabled]="form.invalid"
+      >{{ peticion ? "Actualizar Petición" : "Enviar petición" }}</ion-button
+    >
+  </form>
+</ion-content>
