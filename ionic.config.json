@@ -1,0 +1,7 @@
+{
+  "name": "appMtt",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
