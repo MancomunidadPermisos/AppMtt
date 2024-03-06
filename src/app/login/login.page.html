@@ -5,18 +5,29 @@
       <img src="../../assets/logomancomunidad.png" alt="" />
     </div>
     <form [formGroup]="signinForm">
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend>Correo</legend>
-          <ion-input formControlName="email" type="email" placeholder="example@domain.com"></ion-input>
-        </fieldset>
+      <ion-item class="ion-item">
+        <ion-input
+          mode="md"
+          class="textoInput"
+          label="Correo"
+          label-placement="floating"
+          fill="outline"
+          placeholder="example@domain.com"
+          formControlName="email"
+          type="email"
+        ></ion-input>
       </ion-item>
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend>Contraseña</legend>
-          <ion-input formControlName="password" type="{{ showPassword ? 'text' : 'password' }}" placeholder="*******"></ion-input>
-          <ion-icon class="colorOjo" name="{{ showPassword ? 'eye-off-outline' : 'eye-outline'}}" size="large" color="primary" slot="end" (click)="togglePassword()"></ion-icon>
-        </fieldset>
+      <ion-item class="ion-item">
+        <ion-input
+          mode="md"
+          class="textoInput"
+          label="Contraseña"
+          label-placement="floating"
+          fill="outline"
+          placeholder="****"
+          formControlName="password"
+          type="password"
+        ></ion-input>
       </ion-item>
       <ion-button class="login-button" (click)="login()" expand="block" color="">Iniciar Sesión</ion-button>
     </form>
