@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon color="tertiary" name="arrow-back-outline" size="large" class="colorToolbar"
+        (click)="backHome()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Información</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher style="background: white; height: 10px" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <ion-card-header style="padding-bottom: 0px">
+      <ion-card-subtitle style="font-size: medium; margin: 0px">
+        <strong style="font-weight: bolder">Información de: </strong>
+        <span style="color: #08c505">{{usuario.nombre_usu +" "+ usuario.apellido_usu}}</span>
+        <hr style="margin: 8px 0; border: 0; border-top: 1px solid #e4e7ec" />
+      </ion-card-subtitle>
+      <ion-card-title style="font-size: larger">
+        <p style="
+              font-size: small;
+              color: #898989;
+              margin: 0;
+              padding: 0px;
+              margin-bottom: 8px;
+            ">
+          Correo:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 8px">
+          {{usuario.correo}}
+        </p>
+        <p style="
+              font-size: small;
+              color: #898989;
+              margin: 0;
+              padding: 0px;
+              margin-bottom: 8px;
+            ">
+          Días disponibles:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 8px">
+          {{vacacion.dias_disp}}
+        </p>
+        <p style="
+              font-size: small;
+              color: #898989;
+              margin: 0;
+              padding: 0px;
+              margin-bottom: 8px;
+            ">
+          Horas disponibles:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 8px">
+          {{vacacion.horas_disp}}
+        </p>
+        <p style="
+              font-size: small;
+              color: #898989;
+              margin: 0;
+              padding: 0px;
+              margin-bottom: 8px;
+            ">
+          Minutos disponibles:
+        </p>
+        <p style="margin: 0; padding: 0px; margin-bottom: 16px">
+          {{vacacion.minutos_disp}}
+        </p>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

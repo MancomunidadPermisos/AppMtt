@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
-import { checkboxOutline, documentTextOutline, homeOutline, logOutOutline } from 'ionicons/icons';
+import { checkboxOutline, documentTextOutline, homeOutline, logOutOutline, informationCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -69,6 +69,13 @@ export class HomePage implements OnInit, AfterContentInit {
         routerLinkActive: 'active-link',
         exact: false,
       },
+      {
+        label: 'Informacion',
+        icon: 'information-circle-outline',
+        link: '/informacion',
+        routerLinkActive: 'active-link',
+        exact: false,
+      },
       // Puedes agregar más elementos según sea necesario
     ];
   }
@@ -85,6 +92,13 @@ export class HomePage implements OnInit, AfterContentInit {
         label: 'Peticiones',
         icon: 'document-text-outline',
         link: '/peticiones',
+        routerLinkActive: 'active-link',
+        exact: false,
+      },
+      {
+        label: 'Informacion',
+        icon: 'information-circle-outline',
+        link: '/informacion',
         routerLinkActive: 'active-link',
         exact: false,
       },
@@ -109,6 +123,7 @@ export class HomePage implements OnInit, AfterContentInit {
       checkboxOutline,
       logOutOutline,
       homeOutline,
+      informationCircleOutline,
     });
     this.loadMenuBasedOnUserRole();
     

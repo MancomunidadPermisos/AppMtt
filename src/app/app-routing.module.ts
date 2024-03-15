@@ -31,6 +31,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'informacion',
+    loadChildren: () => import('./informacion/informacion.module').then( m => m.InformacionPageModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule),
@@ -40,6 +45,8 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  
+
 ];
 
 @NgModule({
